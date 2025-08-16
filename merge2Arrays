@@ -1,0 +1,54 @@
+//merge to sorted arrays
+#include<iostream>
+int mergesorter(int arr1[],int arr2[],int n1,int n2){
+    int idx=n1+n2-1,i=n1-1,j=n2-1;
+    while(i>=0 && j>=0){
+        if(arr1[i]>=arr2[j]){
+            arr1[idx]=arr1[i--];
+            
+        }else{
+            arr1[idx]=arr2[j--];
+            
+        }
+        idx--;
+    }
+     int size=n1+n2;
+    for(int i=0;i<size;i++){
+        std::cout<<arr1[i]<<std::endl;
+    }
+}
+int mergesort(int arr1[],int arr2[],int n1,int n2){
+    int arr3[n1+n2],n;
+    if(n1>n2){
+         n=n1;
+    }else{
+        n=n2;
+    }
+    int firA=0,secA=0;
+    for(int i=0;i<n1+n2;i++){
+        if(firA<n1 && secA<n2){
+            if(arr1[firA]>arr2[secA]){
+                arr3[i]=arr2[secA++];   
+            }else{
+                arr3[i]=arr1[firA++];   
+            }
+
+        }else if(firA < n1) {
+            arr3[i] = arr1[firA++];
+        }else if(secA < n2) { 
+            arr3[i] = arr2[secA++];
+        }
+    }
+      int size=n1+n2;
+    for(int i=0;i<size;i++){
+        std::cout<<arr3[i]<<std::endl;
+    }
+}
+int main(){
+    int arr1[]={1,2,3,0,0,0};
+    int arr2[]={2,5,6};
+    int n1=3;
+    int n2=sizeof(arr2)/sizeof(arr2[0]);
+    mergesorter(arr1,arr2,n1,n2);
+    return 0;
+}
